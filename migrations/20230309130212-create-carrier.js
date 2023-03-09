@@ -2,19 +2,16 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('paymente_methods', {
+    await queryInterface.createTable('carriers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      description: {
+      name: {
         type: Sequelize.STRING(30),
         allowNull: false
-      },
-      operator_fee: {
-        type: Sequelize.DECIMAL(18, 2)
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +24,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('paymente_methods');
+    await queryInterface.dropTable('carriers');
   }
 };

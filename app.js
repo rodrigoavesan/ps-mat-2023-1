@@ -45,4 +45,7 @@ app.use('/channels', channels)
 const paymenteMethods = require('./routes/paymente_methods')
 app.use('/paymente_methods', paymenteMethods)
 
+const carriers = require('./routes/carriers')
+app.use('/carriers', carriers)
+
 module.exports = app;
