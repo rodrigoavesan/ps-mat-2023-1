@@ -10,3 +10,7 @@ npx sequelize-cli model:generate --name PaymenteMethod --attributes description:
 npx sequelize-cli model:generate --name Carrier --attributes name:string
 
 npx sequelize-cli model:generate --name Carrier --attributes name:string
+
+npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
+
+npx sequelize-cli model:generate --name City --attributes name:string,state:string
