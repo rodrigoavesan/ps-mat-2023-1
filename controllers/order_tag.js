@@ -1,5 +1,5 @@
 //Importar o model correspodente ao controller
-const { PaymenteMethod } = require('../models')
+const { OrderTag } = require('../models')
 
 const controller = {} //Objeto Vazio
 
@@ -14,7 +14,7 @@ const controller = {} //Objeto Vazio
 
 controller.create = async (req, res) => {
     try{
-        await PaymenteMethod.create(req.body)
+        await OrderTag.create(req.body)
         // HTTP 201: Created
         res.status(201).end()
     }
@@ -25,7 +25,7 @@ controller.create = async (req, res) => {
 
 controller.retrive = async (req, res) => {
     try{
-        const data = await PaymenteMethod.findAll()
+        const data = await OrderTag.findAll()
         // HTTP 200: OK (implicito)
         res.send(data)
     }
@@ -36,7 +36,7 @@ controller.retrive = async (req, res) => {
 
 controller.retriveOne = async (req, res) => {
     try{
-        const data = await PaymenteMethod.findByPk(req.params.id)
+        const data = await OrderTag.findByPk(req.params.id)
 
         // HTTP 200: OK (implicito)
         if(data) res.send(data)
@@ -51,7 +51,7 @@ controller.retriveOne = async (req, res) => {
 
 controller.update = async (req, res) => {
     try{
-       const response = await PaymenteMethod.update(
+       const response = await OrderTag.update(
         req.body,
             { where: { id: req.params.id }}
        )
@@ -73,7 +73,7 @@ controller.update = async (req, res) => {
 
 controller.delete = async (req, res) => {
     try{
-       const response = await PaymenteMethod.destroy(
+       const response = await OrderTag.destroy(
         { where: { id: req.params.id }}
        )
        

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class PaymenteMethod extends Model {
+  class CustomerTag extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,25 +13,25 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  PaymenteMethod.init({
+  CustomerTag.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    description: {
+    customer_id: {
       allowNull: false,
-      type: DataTypes.STRING(30)
+      type: DataTypes.INTEGER
     },
-    operator_fee: {
+    tag_id: {
       allowNull: false,
-      type: DataTypes.DECIMAL(18, 2)
+      type: DataTypes.INTEGER
     },
   }, {
     sequelize,
-    modelName: 'PaymenteMethod',
-    tableName: 'paymente_methods'
+    modelName: 'CustomerTag',
+    tableName: 'customer_tags'
   });
-  return PaymenteMethod;
+  return CustomerTag;
 };

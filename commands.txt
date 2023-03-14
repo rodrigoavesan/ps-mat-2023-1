@@ -1,9 +1,7 @@
 //Geral
- npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
+npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
 
 npx sequelize-cli model:generate --name Channel --attributes id:integer,description:string,commission_fee:decimal
-
-npx sequelize-cli model:generate --name PaymenteMethod --attributes description:string,operator_fee:decimal
 
 npx sequelize-cli model:generate --name PaymenteMethod --attributes description:string,operator_fee:decimal
 
@@ -14,3 +12,20 @@ npx sequelize-cli model:generate --name Carrier --attributes name:string
 npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
 
 npx sequelize-cli model:generate --name City --attributes name:string,state:string
+
+npx sequelize-cli model:generate --name OrderStatus --attributes description:string,sequence:smallint
+
+npx sequelize-cli model:generate --name Tag --attributes description:string,color:string,type:enum
+
+npx sequelize-cli model:generate --name OrderTag --attributes order_id:integer,tag_id:integer
+
+npx sequelize-cli model:generate --name CustomerTag --attributes customer_id:integer,tag_id:integer
+
+
+
+
+
+npx sequelize-cli model:generate --name Customer --attributes name:string,address:text,phone:string,is_whatsapp:boolean,city_id:integer
+
+npx sequelize-cli model:generate --name OrderRelStatus --attributes order_id:integer,order_status_id:integer:user_id:integer
+

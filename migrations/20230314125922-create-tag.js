@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('payment_methods', {
+    await queryInterface.createTable('tags', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,11 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
-        type: Sequelize.STRING(30),
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING(30)
       },
-      operator_fee: {
-        type: Sequelize.DECIMAL(18, 2)
+      color: {
+        type: Sequelize.STRING
+      },
+      type: {
+        allowNull: false,
+        type: Sequelize.ENUM('C','O')
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('payment_methods');
+    await queryInterface.dropTable('tags');
   }
 };

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/paymente_method')
+const controller = require('../controllers/tag')
 
 router.post('/', controller.create)
 router.get('/', controller.retrive)
