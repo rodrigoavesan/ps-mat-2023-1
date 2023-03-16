@@ -10,22 +10,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        allowNull: false,
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(100),
+        allowNull: false
       },
       address: {
         type: Sequelize.TEXT
       },
       phone: {
-        allowNull: false,
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(20),
+        allowNull: false
       },
       is_whatsapp: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       city_id: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

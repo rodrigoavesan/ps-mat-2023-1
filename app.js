@@ -51,9 +51,6 @@ app.use('/carriers', carriers)
 const shipmentPriorities = require('./routes/shipment_priorities')
 app.use('/shipment_priorities', shipmentPriorities)
 
-const cities = require('./routes/cities')
-app.use('/cities', cities)
-
 const orderStatuses = require('./routes/order_statuses')
 app.use('/order_statuses', orderStatuses)
 
@@ -66,13 +63,16 @@ app.use('/order_tags', orderTags)
 const customerTag = require('./routes/customer_tags')
 app.use('/customer_tags', customerTag)
 
-const customers = require('./routes/customers')
-app.use('/customers', customers)
-
 const orderRelStatuses = require('./routes/order_rel_statuses')
 app.use('/order_rel_statuses', orderRelStatuses)
 
 const order = require('./routes/orders')
 app.use('/orders', order)
+
+const cities = require('./routes/cities')
+app.use('/cities', cities)
+
+const customers = require('./routes/customers')
+app.use('/customers', customers)
 
 module.exports = app;

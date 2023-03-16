@@ -6,11 +6,15 @@ module.exports = (sequelize, DataTypes) => {
   class Customer extends Model {
     /**
      * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
+     * This method is not a part of DataTypes lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.City, {
+        foreignKey: 'city_id',    // Nome do campo na tabela de ORIGEM
+        targetKey: 'id',          // Nome do campo na tabela de DESTINO
+        as: 'city'                // Nome do atributo para exibição
+      })
     }
   }
   Customer.init({
@@ -21,22 +25,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
-      allowNull: false,
-      type: DataTypes.STRING(100)
+      type: DataTypes.STRING(100),
+      allowNull: false
     },
     address: {
       type: DataTypes.TEXT
     },
     phone: {
-      allowNull: false,
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING(20),
+      allowNull: false
     },
     is_whatsapp: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     },
     city_id: {
-      allowNull: false,
       type: DataTypes.INTEGER
     },
   }, {
