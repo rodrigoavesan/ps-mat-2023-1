@@ -1,29 +1,33 @@
-//Geral
-npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
+//Gerar as tabelas
+    npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
 
-npx sequelize-cli model:generate --name Channel --attributes id:integer,description:string,commission_fee:decimal
+    npx sequelize-cli model:generate --name Channel --attributes id:integer,description:string,commission_fee:decimal
 
-npx sequelize-cli model:generate --name PaymenteMethod --attributes description:string,operator_fee:decimal
+    npx sequelize-cli model:generate --name PaymenteMethod --attributes description:string,operator_fee:decimal
 
-npx sequelize-cli model:generate --name Carrier --attributes name:string
+    npx sequelize-cli model:generate --name Carrier --attributes name:string
 
-npx sequelize-cli model:generate --name Carrier --attributes name:string
+    npx sequelize-cli model:generate --name Carrier --attributes name:string
 
-npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
+    npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
 
-npx sequelize-cli model:generate --name City --attributes name:string,state:string
+    npx sequelize-cli model:generate --name City --attributes name:string,state:string
 
-npx sequelize-cli model:generate --name OrderStatus --attributes description:string,sequence:smallint
+    npx sequelize-cli model:generate --name OrderStatus --attributes description:string,sequence:smallint
 
-npx sequelize-cli model:generate --name Tag --attributes description:string,color:string,type:enum
+    npx sequelize-cli model:generate --name Tag --attributes description:string,color:string,type:enum
 
-npx sequelize-cli model:generate --name OrderTag --attributes order_id:integer,tag_id:integer
+    npx sequelize-cli model:generate --name OrderTag --attributes order_id:integer,tag_id:integer
 
-npx sequelize-cli model:generate --name CustomerTag --attributes customer_id:integer,tag_id:integer
+    npx sequelize-cli model:generate --name CustomerTag --attributes customer_id:integer,tag_id:integer
 
-npx sequelize-cli model:generate --name Customer --attributes name:string,address:text,phone:string,is_whatsapp:boolean,city_id:integer
+    npx sequelize-cli model:generate --name Customer --attributes name:string,address:text,phone:string,is_whatsapp:boolean,city_id:integer
 
-npx sequelize-cli model:generate --name OrderRelStatus --attributes order_id:integer,order_status_id:integer,user_id:integer
+    npx sequelize-cli model:generate --name OrderRelStatus --attributes order_id:integer,order_status_id:integer,user_id:integer
 
-npx sequelize-cli model:generate --name Order --attributes external_code:string,theme:string,description:text,remarks:text,pic_url:string,custom_name:string,custom_age:smallint,order_date:date,event_date:date,artwork_date:date,shipment_date:date,total_amount:decimal,customer_id:integer,channel_id:integer,carrier_id:integer,shipment_priority_id:integer,payment_method_id:integer
+    npx sequelize-cli model:generate --name Order --attributes external_code:string,theme:string,description:text,remarks:text,pic_url:string,custom_name:string,custom_age:smallint,order_date:date,event_date:date,artwork_date:date,shipment_date:date,total_amount:decimal,customer_id:integer,channel_id:integer,carrier_id:integer,shipment_priority_id:integer,payment_method_id:integer
 
+Gerar as tabelas com foreignKey
+    npx sequelize-cli migration:generate --name alter-table-order-tags
+    npx sequelize-cli migration:generate --name alter-table-orders
+    npx sequelize-cli migration:generate --name alter-table-order-rel-statuses
