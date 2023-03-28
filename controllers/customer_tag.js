@@ -30,7 +30,6 @@ controller.retrive = async (req, res) => {
                 {model: Customer, as: 'customer'},
                 {model: Tag, as: 'tag'}
             ]
-            
         })
         // HTTP 200: OK (implicito)
         res.send(data)

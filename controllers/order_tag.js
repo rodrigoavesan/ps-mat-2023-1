@@ -1,5 +1,6 @@
 //Importar o model correspodente ao controller
-const { OrderTag } = require('../models')
+const { OrderTag, Tag, Order } = require('../models')
+const order = require('../models/order')
 
 const controller = {} //Objeto Vazio
 
@@ -36,13 +37,14 @@ controller.retrive = async (req, res) => {
 
 controller.retriveOne = async (req, res) => {
     try{
-        const data = await OrderTag.findByPk(req.params.id)
-
-        // HTTP 200: OK (implicito)
-        if(data) res.send(data)
-
-        // HTTP 200: OK (implicito)
-        else res.status(404).end()        
+        const data = await OrderTag.findAll({
+            include: [
+                { model: Order, as: 'order' },
+                { model: Tag, as: 'tag' }
+            ]
+        })
+        //HTTP 200: OK (implícito)
+        res.send(data)
     }
     catch(error){
         console.error(error)

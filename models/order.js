@@ -67,6 +67,26 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
+    channel_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    carrier_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    shipment_priority_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    shipment_priority_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    payment_method_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
   }, {
     sequelize,
     modelName: 'Order',
