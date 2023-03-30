@@ -17,9 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       // })
       this.belongsToMany(models.Customer, {
         through: 'customer_tags',   //Tabela intermediária
-        foreignKey: 'tag_id',  //Chave estrangeira da tabela intermediaria
-        otherKey: 'customer_id',         //Outra chave da tabela intermediariá 
-        as: 'customers'                  //Nome do campo de associação (plural)   
+        foreignKey: 'tag_id',       //Chave estrangeira da tabela intermediaria
+        otherKey: 'customer_id',    //Outra chave da tabela intermediariá 
+        as: 'customers'             //Nome do campo de associação (plural)   
+      })
+      this.belongsToMany(models.Order, {
+        through: 'order_tags',        //Tabela intermediária
+        foreignKey: 'tag_id',         //Chave estrangeira da tabela intermediaria
+        otherKey: 'order_id',         //Outra chave da tabela intermediariá 
+        as: 'orders'                  //Nome do campo de associação (plural)   
       })
     }
   }

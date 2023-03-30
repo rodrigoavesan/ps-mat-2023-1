@@ -26,7 +26,12 @@ controller.create = async (req, res) => {
 
 controller.retrive = async (req, res) => {
     try{
-        const data = await OrderTag.findAll()
+        const data = await OrderTag.findAll({
+            include: [
+                { model: Order, as: 'order' },
+                { model: Tag, as: 'tag' }
+            ]
+        })
         // HTTP 200: OK (implicito)
         res.send(data)
     }
@@ -37,12 +42,7 @@ controller.retrive = async (req, res) => {
 
 controller.retriveOne = async (req, res) => {
     try{
-        const data = await OrderTag.findAll({
-            include: [
-                { model: Order, as: 'order' },
-                { model: Tag, as: 'tag' }
-            ]
-        })
+        const data = await OrderTag.findAll()
         //HTTP 200: OK (implícito)
         res.send(data)
     }

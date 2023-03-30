@@ -10,7 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Order, {
+        foreignKey: 'order_id',    // Nome do campo na tabela de ORIGEM
+        targetKey: 'id',          // Nome do campo na tabela de DESTINO
+        as: 'order'                // Nome do atributo para exibição
+      })
+      this.belongsTo(models.OrderStatus, {
+        foreignKey: 'order_status_id',    // Nome do campo na tabela de ORIGEM
+        targetKey: 'id',          // Nome do campo na tabela de DESTINO
+        as: 'order_status'                // Nome do atributo para exibição
+      })
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id',    // Nome do campo na tabela de ORIGEM
+        targetKey: 'id',          // Nome do campo na tabela de DESTINO
+        as: 'user'                // Nome do atributo para exibição
+      })
     }
   }
   OrderRelStatus.init({
