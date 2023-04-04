@@ -10,7 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsToMany(models.Order, {
+        through: 'order_rel_statuses',   //Tabela intermediária
+        foreignKey: 'order_id',  //Chave estrangeira da tabela intermediaria
+        otherKey: 'user_id',
+        otherKey: 'order_status_id',         //Outra chave da tabela intermediariá 
+        as: 'orders'                  //Nome do campo de associação (plural)   
+      })
+    }
+    static associate(models) {
+      this.belongsToMany(models.OrderStatus, {
+        through: 'order_rel_statuses',   //Tabela intermediária
+        foreignKey: 'order_status_id',  //Chave estrangeira da tabela intermediaria
+        otherKey: 'user_id',  
+        otherKey: 'order_id',         //Outra chave da tabela intermediariá 
+        as: 'order_statuses'                  //Nome do campo de associação (plural)   
+      })
     }
   }
   User.init({
@@ -49,7 +64,23 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'users'
+    tableName: 'users',
+    //Esconde o campo "password" no retrive e no retriveOne
+    defaultScope:{
+      attributes:{
+        exclude:['password']
+      }
+    },
+    scopes: {
+      //Inclui o campo "password" (necessario no login)
+      withPassword:{
+        attributes:{
+          include:['password']
+        }
+      }
+    }
+    
+    
   });
   return User;
 };
