@@ -1,37 +1,32 @@
-//importar o model ncorrespondente ao controller
-const { OrderStatus, User, Order } = require('../models')
+//Importar o model correspodente ao controller
+const { OrderStatus } = require('../models')
 
-const controller = {}  //objeto vazio
+const controller = {} //Objeto Vazio
 
 /*
- Métodos CRUD do controller
- create: cria novo registro
- retrieve: lista(recupera) todos os registros
- retrieveOne: lista(recupera) apenas um registro
- update: atualiza um registro
- delete: exclui um registro
+    Métodos CRUD do controller 
+    Create: cria um novo registro
+    retrive: lista(recupera) todos os registros
+    retriveOne: lista(recupera) apenas um registro
+    update: atualiza um registro
+    delete: deleta um registro
 */
 
 controller.create = async (req, res) => {
-    try {
+    try{
         await OrderStatus.create(req.body)
-        //HTTP 201: Created
+        // HTTP 201: Created
         res.status(201).end()
     }
-    catch(error) {
+    catch(error){
         console.error(error)
     }
 }
 
-controller.retrieve = async(req, res) => {
+controller.retrive = async (req, res) => {
     try{
-        const data = await OrderStatus.findAll({
-            include: [
-                {model: User, as: 'users'},
-                {model: Order, as: 'orders'}
-            ]
-        })//.select('-password')//findAll dá um select*
-        //HTTP 200: OK (implícito)
+        const data = await OrderStatus.findAll()
+        // HTTP 200: OK (implicito)
         res.send(data)
     }
     catch(error){
@@ -39,15 +34,15 @@ controller.retrieve = async(req, res) => {
     }
 }
 
-controller.retrieveOne = async(req, res) => {
+controller.retriveOne = async (req, res) => {
     try{
-        const data = await OrderStatus.findByPk(req.params.id)//.select //findAll dá um select*
-        //HTTP 200: OK (implícito)
+        const data = await OrderStatus.findByPk(req.params.id)
+
+        // HTTP 200: OK (implicito)
         if(data) res.send(data)
 
-        //HTTP 404: Not Found
-        else res.status(404).end()
-        
+        // HTTP 200: OK (implicito)
+        else res.status(404).end()        
     }
     catch(error){
         console.error(error)
@@ -56,46 +51,42 @@ controller.retrieveOne = async(req, res) => {
 
 controller.update = async (req, res) => {
     try{
-        const response = await OrderStatus.update(
-            req.body,
-            { where: {id: req.params.id }}
-        )
-
-        //response retorna um vetor. O primeiro elemento
-        //dp vetor indica quantos registros foram afetados
-        //pelo update
-        if(response[0] > 0) {
-            //HTTP 204 : No content
-            res.status(204).end()
-        }
-        else {
-            //Não encontrou o registro para atualizar
-            //HTTP 404: Not found
-            res.status(404).end()
-        }
+       const response = await OrderStatus.update(
+        req.body,
+            { where: { id: req.params.id }}
+       )
+       
+       //response retorna um vetor. O primeiro elemento do vetor indica quantos registros foram afetados pelo update
+       if(response [0] > 0){
+         //HTTP 204: No content
+         res.status(204).end()
+       }
+       else { //Não encontrou o registro para atualizar 
+         //HTTP 404: Not found
+         res.status(404).end()
+       }
     }
-    catch(error) {
+    catch(error){
         console.error(error)
     }
 }
 
 controller.delete = async (req, res) => {
     try{
-        const response = await OrderStatus.destroy(
-            { where: {id: req.params.id }}
-        )
-        if(response) {
-            //Encontrou e excluiu
-            //HTTP 204: No content
-            res.status(204).end()
-        }
-        else {
-            //Não encontrou e não excluiu
-            //HTTP 404: Not found
-            res.status(404).end()
-        }
+       const response = await OrderStatus.destroy(
+        { where: { id: req.params.id }}
+       )
+       
+       if(response){ // Encontrou e excluiu
+         //HTTP 204: No content
+         res.status(204).end()
+       }
+       else {  // Não encontrou e não excluiu
+         //HTTP 404: Not found
+         res.status(404).end()
+       }
     }
-    catch(error) {
+    catch(error){
         console.error(error)
     }
 }

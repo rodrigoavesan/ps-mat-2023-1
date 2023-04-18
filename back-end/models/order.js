@@ -6,31 +6,15 @@ module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     /**
      * Helper method for defining associations.
-     * This method is not a part of DataTypes lifecycle.
+     * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
       this.belongsToMany(models.Tag, {
-        through: 'order_tags',     //Tabela intermediária
-        foreignKey: 'tag_id',         //Chave strangeira da tabela iintermediaria
-        otherKey: 'order_id',
-        as: 'tags'
-      })
-
-      this.belongsToMany(models.User, {
-        through: 'order_rel_statuses',     //Tabela intermediária
-        foreignKey: 'user_id',         //Chave strangeira da tabela iintermediaria
-        otherKey: 'order_status_id',
-        otherKey: 'order_id',
-        as: 'users'
-      })
-
-      this.belongsToMany(models.OrderStatus, {
-        through: 'order_rel_statuses',     //Tabela intermediária
-        foreignKey: 'order_status_id',         //Chave strangeira da tabela iintermediaria
-        otherKey: 'order_id',
-        otherKey: 'user_id',
-        as: 'order_statuses'
+        through: 'order_tags',   //Tabela intermediária
+        foreignKey: 'order_id',  //Chave estrangeira da tabela intermediaria
+        otherKey: 'tag_id',         //Outra chave da tabela intermediariá 
+        as: 'tags'                  //Nome do campo de associação (plural)   
       })
     }
   }
@@ -45,12 +29,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(20)
     },
     theme: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.STRING(50)
     },
     description: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.TEXT
     },
     remarks: {
       type: DataTypes.TEXT
@@ -59,16 +43,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(200)
     },
     custom_name: {
-      type: DataTypes.STRING(30),
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.STRING(30)
     },
     custom_age: {
-      type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.SMALLINT
     },
     order_date: {
-      type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.DATE
     },
     event_date: {
       type: DataTypes.DATE
@@ -77,32 +61,36 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     },
     shipment_date: {
-      type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.DATE
     },
     total_amount: {
-      type: DataTypes.DECIMAL(18,2),
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.DECIMAL(18,2)
     },
     customer_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
     channel_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
     carrier_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
     shipment_priority_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
-    payment_method: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    shipment_priority_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    payment_method_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
   }, {
     sequelize,
