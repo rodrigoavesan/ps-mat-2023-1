@@ -17,12 +17,12 @@ var app = express();
 const db = require('./models')
 
 try {
-    db.sequelize.authenticate()
-    console.log('SEQUELIZE: connection has been estabilished succesfully.')
+  db.sequelize.authenticate()
+  console.log('SEQUELIZE: connection has been established successfully.')
 }
 catch(error) {
-    console.error('*SEQUELIZE: unable to connect to the database: ', error)
-    process.exit(1) //encerra o servidor com erro
+  console.error('* SEQUELIZE: unable to connect to the database: ', error)
+  process.exit(1)     // Encerra o servidor com erro
 }
 //-----------------------------------------------------------------------------
 app.use(logger('dev'));
@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Chama a verificação de autenticação para qualquer rota
 const auth = require('./lib/auth')
 app.use(auth)
 
@@ -73,5 +74,12 @@ app.use('/order_rel_statuses', orderRelStatuses)
 
 const orders = require('./routes/orders')
 app.use('/orders', orders)
+
+
+const supliers = require('./routes/suppliers')
+app.use('/supliers', supliers)
+
+const products = require('./routes//products')
+app.use('/products', products)
 
 module.exports = app;

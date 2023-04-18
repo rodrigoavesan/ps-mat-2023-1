@@ -16,15 +16,16 @@ const controller = {}  //objeto vazio
 
 controller.create = async (req, res) => {
     try {
-
-        //criptografa a senha
-        req.body.password = await bcrypt.hash(req.body.password, 12)
-        await User.create(req.body)
-        //HTTP 201: Created
-        res.status(201).end()
+  
+      // Criptografa a senha
+      req.body.password = await bcrypt.hash(req.body.password, 12)
+  
+      await User.create(req.body)
+      // HTTP 201: Created
+      res.status(201).end()
     }
     catch(error) {
-        console.error(error)
+      console.error(error)
     }
 }
 
