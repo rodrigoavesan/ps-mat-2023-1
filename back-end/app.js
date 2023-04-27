@@ -12,6 +12,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const cors = require('cors')
+app.use(cors())
 // Conexão ao BD ---------------------------------------------------------------------
 const db = require('./models')
 
