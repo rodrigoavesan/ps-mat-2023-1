@@ -5,7 +5,6 @@ import Login from './pages/Login'
 import HeaderBar from './components/ui/HeaderBar'
 import Box from '@mui/material/Box'
 import PaymentMethodList from './pages/payment_methods/PaymentMethodList'
-import Typography from '@mui/material/Typography'
 
 function AuthGuard({children}){
   //Estaremos autenticados se tivermos um token gravado no localStorage
@@ -18,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <HeaderBar />
-      <Box sx={{ m: '25px auto' }}>
+      <Box sx={{ m: '25px auto', p:'16px' }}>
         <Routes>
           <Route path="/" element={<AuthGuard> <Home /> </AuthGuard> } />
           <Route path="/login" element={<Login />} />

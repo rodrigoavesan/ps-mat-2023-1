@@ -2,27 +2,45 @@ const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
 
-    //É necessário ter o token para continuar
-    const beareHeader = req.headers['authorization']
+  // Gambiarra para não precisar fazer login
+  //next()
+ // return
 
-    //token não foi passado ~>s
-    if(!beareHeader) return res.status(403).end()
+  const bypassRoutes = [
+    { url: '/users/login', method: 'POST' }
+  ]
 
-    //Extrai o token de dentro da cabeçalho "authorization"
-    const temp = beareHeader.split(' ')
-    const token = temp[1]
+  for(let route of bypassRoutes) {
+    if(route.url === req.url && route.method === req.method) {
+      next()
+      return
+    }
+  }
 
-    //Validando o token
-    jwt.verify(token, process.env.TOKEN_SECRET, (error, decoded) => {
+  // É necessário ter o token para continuar 
+  const bearerHeader = req.headers['authorization']
+  
+  // O token não foi passado ~> HTTP 403: Forbidden
+  if(!bearerHeader) return res.status(403).end()
 
-        //Token invalido ou expirado ~~> HTTP 403: Forbidden
-        if(error) return res.status(403).end()
+  // Extrai o token de dentro do cabeçalho "authorization"
+  const temp = bearerHeader.split(' ')
+  const token = temp[1]
 
-        //Se chegamos até aqui, o token está OK e temos as informações do usuário logado na parâmetro "decoded". Vamos guardar isso na request para usar depois
-        req.authUser = decoded
+  // Validando o token
+  jwt.verify(token, process.env.TOKEN_SECRET, (error, decoded) => {
 
-        console.log({authUser: req.authUser})
+    // Token inválido ou expirado ~> HTTP 403: Forbidden
+    if(error) return res.status(403).end()
 
-        next()
-    })  
+    // Se chegamos até aqui, o token está OK e temos as informações do
+    // usuário logado no parâmetro "decoded". Vamos guardar isso na
+    // request para usar depois
+    req.authUser = decoded
+
+    //console.log({authUser: req.authUser})
+
+    next()
+  })
+
 }
