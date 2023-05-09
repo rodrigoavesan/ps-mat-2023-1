@@ -12,9 +12,10 @@ export default function HeaderBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-         
+          
 
-          <MainMenu/>
+          <MainMenu />
+          
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Startisan
           </Typography>
