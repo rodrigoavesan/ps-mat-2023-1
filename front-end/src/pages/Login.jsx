@@ -5,17 +5,16 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
-import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert'
 import myfetch from '../utils/myfetch'
 import PageTitle from '../components/ui/PageTitle'
+import Notification from '../components/ui/Notification'
 
 export default function Login() {
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [showWaiting, setShowWaiting] = React.useState(false)
-  const [snack, setSnack] = React.useState({
+  const [notif, setNotif] = React.useState({
     show: false,
     message: '',
     severity: 'success' // ou 'error'
@@ -61,11 +60,11 @@ export default function Login() {
     }
   }
 
-  function handleSnackClose(event, reason) {
+  function handleNotifClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
-    setSnack({ show: false })
+    setNotif({ show: false })
   };
 
   return (
@@ -77,11 +76,14 @@ export default function Login() {
         <CircularProgress color="inherit" />
       </Backdrop>
 
-      <Snackbar open={snack.show} autoHideDuration={4000} onClose={handleSnackClose}>
-        <Alert onClose={handleSnackClose} severity={snack.severity} sx={{ width: '100%' }}>
-          {snack.message}
-        </Alert>
-      </Snackbar>
+      <Notification 
+        show={notif.show} 
+        severity={notif.severity}
+        onClose={handleNotifClose}
+      >
+        {notif.message}
+      </Notification>
+
 
       <PageTitle title="Autentique-se" />
 
