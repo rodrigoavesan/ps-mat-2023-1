@@ -5,9 +5,9 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
+import Notification from '../components/ui/Notification'
 import myfetch from '../utils/myfetch'
 import PageTitle from '../components/ui/PageTitle'
-import Notification from '../components/ui/Notification'
 
 export default function Login() {
 
@@ -35,7 +35,7 @@ export default function Login() {
       window.localStorage.setItem('token', result.token)
 
       // Exibe o snackbar de sucesso
-      setSnack({
+      setNotif({
         show: true,
         message: 'Autenticação realizada com sucesso!',
         severity: 'success'
@@ -49,7 +49,7 @@ export default function Login() {
       window.localStorage.removeItem('token')  
 
       // Exibe o snackbar de erro
-      setSnack({
+      setNotif({
         show: true,
         message: error.message,
         severity: 'error'
@@ -77,13 +77,12 @@ export default function Login() {
       </Backdrop>
 
       <Notification 
-        show={notif.show} 
+        show={notif.show}
         severity={notif.severity}
         onClose={handleNotifClose}
       >
         {notif.message}
       </Notification>
-
 
       <PageTitle title="Autentique-se" />
 
