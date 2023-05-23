@@ -113,7 +113,7 @@ export default function CarrierForm() {
         {notif.message}
       </Notification>
       
-      <PageTitle title="Cadastrar novo canal de entrega" />
+      <PageTitle title="Cadastrar novo tipo de entrega" />
 
       <form onSubmit={handleFormSubmit}>
         <TextField 

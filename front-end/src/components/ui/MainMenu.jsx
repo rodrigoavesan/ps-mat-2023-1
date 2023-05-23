@@ -56,8 +56,9 @@ export default function MainMenu() {
         </MenuItem>
 
         <MenuItem onClick={handleClose} component={Link}to="/carrier">
-          Tipo de entrega
-          </MenuItem>
+          Tipos de entrega
+        </MenuItem>
+
 
       </Menu>
     </div>

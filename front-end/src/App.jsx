@@ -9,6 +9,7 @@ import PaymentMethodForm from './pages/payment_methods/PaymentMethodForm'
 import CarrierList from './pages/carrier/CarrierList'
 import CarrierForm from './pages/carrier/CarrierForm'
 
+
 function AuthGuard({children}){
   //Estaremos autenticados se tivermos um token gravado no localStorage
   if(window.localStorage.getItem('token')) return children
@@ -30,7 +31,6 @@ function App() {
 
 
           <Route path="/payment_method/:id" element={<AuthGuard> <PaymentMethodForm /> </AuthGuard> } /> 
-
 
           <Route path="/carrier" element={<AuthGuard> <CarrierList /> </AuthGuard> } />
           <Route path="/carrier/new" element={<AuthGuard> <CarrierForm /> </AuthGuard> } />
