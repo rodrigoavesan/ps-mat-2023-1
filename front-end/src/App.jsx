@@ -25,6 +25,9 @@ function App() {
           <Route path="/payment_method" element={<AuthGuard> <PaymentMethodList /> </AuthGuard> } />
 
           <Route path="/payment_method/new" element={<AuthGuard> <PaymentMethodForm /> </AuthGuard> } />
+
+          <Route path="/payment_method/:id" element={<AuthGuard> <PaymentMethodForm /> </AuthGuard> } />
+
         </Routes>
       </Box>
     </BrowserRouter>
