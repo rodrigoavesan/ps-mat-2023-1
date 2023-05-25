@@ -35,6 +35,7 @@ function App() {
           <Route path="/carrier/new" element={<AuthGuard> <CarrierForm /> </AuthGuard> } />
           <Route path="/carrier/:id" element={<AuthGuard> <CarrierForm /> </AuthGuard> } />
 
+
           <Route path="/shipment_priority" element={<AuthGuard> <ShipmentPriorityList /> </AuthGuard> } />
           <Route path="/shipment_priority/new" element={<AuthGuard> <ShipmentPriorityForm /> </AuthGuard> } />
           <Route path="/shipment_priority/:id" element={<AuthGuard> <ShipmentPriorityForm /> </AuthGuard> } />

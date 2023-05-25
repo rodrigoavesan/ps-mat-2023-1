@@ -61,7 +61,7 @@ export default function MainMenu() {
         </MenuItem>
 
         <MenuItem onClick={handleClose} component={Link}to="/shipment_priority">
-          Prioridades de envio
+           Prioridades de envio
         </MenuItem>
 
 

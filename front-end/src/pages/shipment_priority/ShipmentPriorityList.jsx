@@ -174,7 +174,7 @@ export default function ShipmentPriorityList() {
         </Alert>
       </Snackbar>
 
-      <PageTitle title="Listagem de prioridade de envio"  />
+      <PageTitle title= "Listagem de prioridade de envio"/>
 
       <Box sx={{
         display: "flex",

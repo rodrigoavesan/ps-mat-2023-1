@@ -1,6 +1,7 @@
 import Joi from 'joi'
 
 const ShipmentPriority = Joi.object({
+    
     description: Joi.string()
 
         .min(2)

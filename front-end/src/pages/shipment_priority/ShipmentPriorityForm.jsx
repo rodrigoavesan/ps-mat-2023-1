@@ -154,7 +154,7 @@ export default function ShipmentPriorityForm() {
         {notif.message}
       </Notification>
 
-      <PageTitle title={params.id ? "Editar prioridade de envio" : "Cadastrar nova prioridade de envio"} />
+      <PageTitle title={params.id ? "Editar prioridade de envio" : "Cadastrar nova prioridade de envio" } />
 
 
       <form onSubmit={handleFormSubmit}>
