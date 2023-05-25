@@ -59,6 +59,10 @@ export default function MainMenu() {
           Tipos de entrega
         </MenuItem>
 
+        <MenuItem onClick={handleClose} component={Link}to="/shipment_priority">
+          Prioridade de envio
+        </MenuItem>
+
 
       </Menu>
     </div>
