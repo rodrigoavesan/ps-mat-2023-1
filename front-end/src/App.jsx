@@ -6,10 +6,10 @@ import HeaderBar from './components/ui/HeaderBar'
 import Box from '@mui/material/Box'
 import PaymentMethodList from './pages/payment_methods/PaymentMethodList'
 import PaymentMethodForm from './pages/payment_methods/PaymentMethodForm'
-import CarrierList from './pages/carrier/CarrierList'
-import CarrierForm from './pages/carrier/CarrierForm'
 import ShipmentPriorityForm from './pages/shipment_priority/ShipmentPriorityForm'
 import ShipmentPriorityList from './pages/shipment_priority/ShipmentPriorityList'
+import CarrierList from './pages/carrier/CarrierList'
+import CarrierForm from './pages/carrier/CarrierForm'
 
 function AuthGuard({children}){
   //Estaremos autenticados se tivermos um token gravado no localStorage
@@ -33,6 +33,7 @@ function App() {
 
           <Route path="/carrier" element={<AuthGuard> <CarrierList /> </AuthGuard> } />
           <Route path="/carrier/new" element={<AuthGuard> <CarrierForm /> </AuthGuard> } />
+          <Route path="/carrier/:id" element={<AuthGuard> <CarrierForm /> </AuthGuard> } />
 
           <Route path="/shipment_priority" element={<AuthGuard> <ShipmentPriorityList /> </AuthGuard> } />
           <Route path="/shipment_priority/new" element={<AuthGuard> <ShipmentPriorityForm /> </AuthGuard> } />

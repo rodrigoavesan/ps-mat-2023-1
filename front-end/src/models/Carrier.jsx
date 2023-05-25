@@ -9,6 +9,7 @@ const Carrier = Joi.object({
         .messages({'*': 'A descrição é obirgatoria (entre 2 e 30 caracteres)'}),
     
 })
-
+//Permite campos não validados, como id, createdAt e updateAt
+.options({allowUnknown:true})
 
 export default Carrier

@@ -55,12 +55,13 @@ export default function MainMenu() {
           Métodos de pagamento
         </MenuItem>
 
+
         <MenuItem onClick={handleClose} component={Link}to="/carrier">
-          Tipos de entrega
+          Transportadoras
         </MenuItem>
 
         <MenuItem onClick={handleClose} component={Link}to="/shipment_priority">
-          Prioridade de envio
+          Prioridades de envio
         </MenuItem>
 
 

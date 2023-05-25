@@ -1,7 +1,7 @@
 import React from 'react'
 import myfetch from '../../utils/myfetch'
 import PageTitle from '../../components/ui/PageTitle'
-import Paper from '@mui/material/Paper'
+import Paper from '@mui/material/Paper';
 import { DataGrid } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -9,10 +9,11 @@ import IconButton from '@mui/material/IconButton'
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import ConfirmDialog from '../../components/ui/ConfirmDialog'
-import Notification from '../../components/ui/Notification'
-import Box  from '@mui/material/Box'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import{ Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 export default function CarrierList() {
@@ -23,7 +24,7 @@ export default function CarrierList() {
     showWaiting: false,
     showDialog: false,
     deleteId: null,
-    notif: {
+    snack: {
       show: false,
       message: '',
       severity: 'success' // ou 'error'
@@ -34,7 +35,7 @@ export default function CarrierList() {
     showWaiting,
     showDialog,
     deleteId,
-    notif
+    snack
   } = state
 
   async function fetchData() {
@@ -76,9 +77,11 @@ export default function CarrierList() {
       align: 'center',
       width: 90,
       renderCell: params => (
-        <IconButton aria-label="Editar">
-          <EditIcon />
-        </IconButton>
+        <Link to={'./' + params.id}>
+          <IconButton aria-label="Editar">
+            <EditIcon />
+          </IconButton>
+        </Link>
       )
     },
     {
@@ -112,7 +115,7 @@ export default function CarrierList() {
           ...state,
           showWaiting: false,   // esconde o backdrop
           showDialog: false,    // esconde o diálogo de confirmação
-          notif: {              // exibe a snackbar
+          snack: {              // exibe a snackbar
             show: true,
             message: 'Item excluído com sucesso',
             severity: 'success'
@@ -127,7 +130,7 @@ export default function CarrierList() {
           ...state,
           showWaiting: false,   // esconde o backdrop
           showDialog: false,    // esconde o diálogo de confirmação
-          notif: {              // exibe a snackbar
+          snack: {              // exibe a snackbar
             show: true,
             message: 'ERRO: ' + error.message,
             severity: 'error'
@@ -141,11 +144,11 @@ export default function CarrierList() {
     }
   }
   
-  function handleNotifClose(event, reason) {
+  function handleSnackClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
-    setState({ ...state, notif: { show: false } })
+    setState({ ...state, snack: { show: false } })
   };
 
   return (
@@ -165,15 +168,13 @@ export default function CarrierList() {
         Deseja realmente excluir este item?
       </ConfirmDialog>
 
-      <Notification 
-        show={notif.show} 
-        severity={notif.severity} 
-        onClose={handleNotifClose}
-      >
-        {notif.message}
-      </Notification>
+      <Snackbar open={snack.show} autoHideDuration={4000} onClose={handleSnackClose}>
+        <Alert onClose={handleSnackClose} severity={snack.severity} sx={{ width: '100%' }}>
+          {snack.message}
+        </Alert>
+      </Snackbar>
 
-      <PageTitle title="Listagem de tipos de entrega"  />
+      <PageTitle title="Listagem de transportadoras"  />
 
       <Box sx={{
         display: "flex",
@@ -181,11 +182,12 @@ export default function CarrierList() {
         marginBottom: "25px"
       }}>
         <Link to="new">
-          <Button
-          variant="contained"
-          size="large"
-          color="secondary"
-          startIcon={<AddCircleIcon />}>
+          <Button 
+            variant="contained" 
+            size="large" 
+            color="secondary"
+            startIcon={<AddCircleIcon />}
+          >
             Cadastrar novo
           </Button>
         </Link>

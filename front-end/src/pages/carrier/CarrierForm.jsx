@@ -7,25 +7,27 @@ import myfetch from '../../utils/myfetch'
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Notification from '../../components/ui/Notification'
-import { useNavigate } from 'react-router-dom'
-import getValidationMessages from '../../utils/getValidationMessages'
+import { useNavigate, useParams } from 'react-router-dom'
+import getValidationMessages from '../../utils/getValidationMessages'; 
 import Carrier from '../../models/Carrier'
 
 export default function CarrierForm() {
   const API_PATH = '/carriers'
 
   const navigate = useNavigate()
+  const params = useParams()
 
   const [state, setState] = React.useState({
     carrier: {
-      name: ''
+      description: '',
+      operator_fee: ''
     },
-    errors: {},
+    errors:{},
     showWaiting: false,
     notif: {
-      show: false,
-      severity: 'success',
-      message: ''
+      show:false,
+      severity:'success',
+      message:''
     }
   })
   const {
@@ -48,37 +50,73 @@ export default function CarrierForm() {
     sendData()
   }
 
+  //Este useEffect será executando apenas durante o carregamento inicial da página
+  React.useEffect(() => {
+    //Se houver parâmetro id na rota, devemos carregar um registro existente para edição
+    if(params.id) fetchData()
+  }, [])
+
+  async function fetchData(){
+    setState({...state, showWaiting: true, errors:{}})
+    try{
+      const result =  await myfetch.get(`${API_PATH}/${params.id}`)
+      setState({
+        ...state,
+        carrier: result,
+        showWaiting: false
+      })
+    }
+    catch{
+      console.log(error)
+      setState({
+        ...state,
+        showWaiting: false,
+        errors: errorMessages,
+        notif:{
+          severity: 'error',
+          show: true,
+          message: 'ERRO: ' + error.message
+        }
+      })
+    }
+  }
+
   async function sendData() {
-    setState({...state, showWaiting: true, errors: {}})
+    setState({...state, showWaiting: true, errors:{}})
     try {
 
-      //Chama a validação da biblioteca Joi
-      await Carrier.validateAsync(carrier)
+      //Chama a validação da bíblioteca Joi
+      await Carrier.validateAsync(carrier, {abortEarly:false})
 
-      await myfetch.post(API_PATH, carrier)
-      // DAR FEEDBACK POSITIVO E VOLTAR PARA A LISTAGEM
+      //Registro já existe: chama PUT para atualizar
+      if (params.id) await myfetch.put(`${API_PATH}/${params.id}`, carrier)
+
+      //Registro não existe: chama POST para criar
+      else await myfetch.post(API_PATH, carrier)
+
       setState({
-        ...state, 
+        ...state,
         showWaiting: false,
-        notif: {
+        errors:{},
+        notif:{
           severity: 'success',
-          show: true,
-          message: 'Novo item salvo com sucesso'
+          show:true,
+          message: 'Item salvo com sucesso'
         }
       })
     }
     catch(error) {
-      const {validationError, errorMessages } = getValidationMessages(error)
+      const { validationError, errorMessages} = getValidationMessages(error)
 
       console.error(error)
 
       setState({
-        ...state, 
+        ...state,
         showWaiting: false,
         errors: errorMessages,
-        notif: {
+        notif:{
           severity: 'error',
-          show: true,
+          show: !validationError,
           message: 'ERRO: ' + error.message
         }
       })
@@ -89,12 +127,15 @@ export default function CarrierForm() {
     if (reason === 'clickaway') {
       return;
     }
-    
-    //Se o item foi salvo com sucesso, retorna a pagina de listagem
-    if(notif.severity === 'success') navigate("/carrier")
 
-    setState({ ...state, notif: { ...notif, show: false } })
+    //Se o item for salvo com suceeso, retorna á página de listagem
+    if(notif.severity === 'success') navigate(-1)
+
+    setState({ ...state, notif: {...notif, show: false } })
+
   };
+
+
 
   return (
     <>
@@ -107,13 +148,14 @@ export default function CarrierForm() {
 
       <Notification 
         show={notif.show} 
-        severity={notif.severity} 
+        severity={notif.severity}
         onClose={handleNotifClose}
       >
         {notif.message}
       </Notification>
-      
-      <PageTitle title="Cadastrar novo tipo de entrega" />
+
+      <PageTitle title={params.id ? "Editar transportadora" : "Cadastrar nova transportadora"} />
+
 
       <form onSubmit={handleFormSubmit}>
         <TextField 
@@ -136,7 +178,6 @@ export default function CarrierForm() {
           <SendIcon sx={{ mr: 1 }} />
           Enviar
         </Fab>
-
       </form>
     </>
   )
