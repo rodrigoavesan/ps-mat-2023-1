@@ -122,7 +122,7 @@ export default function ChannelList() {
           showDialog: false,    // esconde o diálogo de confirmação
           snack: {              // exibe a snackbar
             show: true,
-            message: 'Item excluído com sucesso',
+            message: 'Item excluído com sucesso' ,
             severity: 'success'
           }
         })

@@ -42,9 +42,9 @@ function App() {
           <Route path="/shipment_priority/new" element={<AuthGuard> <ShipmentPriorityForm /> </AuthGuard> } />
           <Route path="/shipment_priority/:id" element={<AuthGuard> <ShipmentPriorityForm /> </AuthGuard> } />
 
-          <Route path="/channel" element={<AuthGuard> <ChannelList /> </AuthGuard> } />
-          <Route path="/channel/new" element={<AuthGuard> <ChannelForm /> </AuthGuard> } />
-          <Route path="/channel/:id" element={<AuthGuard> <ChannelForm /> </AuthGuard> } />
+          <Route path="/channel" element={<AuthGuard> <ChannelList /> </AuthGuard> }  />
+          <Route path="/channel/new" element={<AuthGuard> <ChannelForm /> </AuthGuard> }  />
+          <Route path="/channel/:id" element={<AuthGuard> <ChannelForm /> </AuthGuard> }  />
 
 
         </Routes>

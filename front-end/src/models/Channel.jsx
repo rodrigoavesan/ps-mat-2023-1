@@ -1,7 +1,6 @@
 import Joi from 'joi'
 
 const Channel = Joi.object({
-
     description: Joi.string()
         .min(2)
         .max(30)

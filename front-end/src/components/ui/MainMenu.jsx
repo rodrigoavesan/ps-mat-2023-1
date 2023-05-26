@@ -65,7 +65,7 @@ export default function MainMenu() {
         </MenuItem>
 
         <MenuItem onClick={handleClose} component={Link}to="/channel">
-           Canais de comunicação
+          Canais de comunicação
         </MenuItem>
 
 

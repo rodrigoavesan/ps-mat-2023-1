@@ -151,7 +151,7 @@ export default function ChannelForm() {
           {notif.message}
       </Notification>
         
-        <PageTitle title={params.id ? "Editar canal " : "Cadastrar novo canal"} />
+        <PageTitle title={params.id ? "Editar canal" : "Cadastrar novo canal"} />
 
 
         <form onSubmit={handleFormSubmit}>
@@ -178,6 +178,7 @@ export default function ChannelForm() {
             onChange={handleFormFieldChange}
             error={errors?.commission_fee}
             helperText={errors?.commission_fee}
+
           />
   
           <Fab 
