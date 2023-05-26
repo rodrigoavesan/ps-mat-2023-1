@@ -64,6 +64,10 @@ export default function MainMenu() {
            Prioridades de envio
         </MenuItem>
 
+        <MenuItem onClick={handleClose} component={Link}to="/channel">
+           Canais de comunicação
+        </MenuItem>
+
 
       </Menu>
     </div>
