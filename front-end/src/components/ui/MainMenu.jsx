@@ -72,6 +72,10 @@ export default function MainMenu() {
           Etiquetas
         </MenuItem>
 
+        <MenuItem onClick={handleClose} component={Link}to="/order_status">
+           Status do pedido 
+        </MenuItem>
+
 
       </Menu>
     </div>

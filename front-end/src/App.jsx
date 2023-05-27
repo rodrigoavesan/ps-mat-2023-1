@@ -14,6 +14,9 @@ import ChannelList from './pages/channel/ChannelList'
 import ChannelForm from './pages/channel/ChannelForm'
 import TagList from './pages/tag/TagList'
 import TagForm from './pages/tag/TagForm'
+import OrderStatusList from './pages/order_status/OrderStatusList'
+import OrderStatusForm from './pages/order_status/OrderStatusForm'
+
 
 function AuthGuard({children}){
   //Estaremos autenticados se tivermos um token gravado no localStorage
@@ -50,6 +53,10 @@ function App() {
           <Route path="/tag" element={<AuthGuard> <TagList /> </AuthGuard> }  />
           <Route path="/tag/new" element={<AuthGuard> <TagForm /> </AuthGuard> }  />
           <Route path="/tag/:id" element={<AuthGuard> <TagForm /> </AuthGuard> }  />
+
+          <Route path="/order_status" element={<AuthGuard> <OrderStatusList /> </AuthGuard> }  />
+          <Route path="/order_status/new" element={<AuthGuard> <OrderStatusForm /> </AuthGuard> }  />
+          <Route path="/order_status/:id" element={<AuthGuard> <OrderStatusForm /> </AuthGuard> }  />
 
 
         </Routes>
