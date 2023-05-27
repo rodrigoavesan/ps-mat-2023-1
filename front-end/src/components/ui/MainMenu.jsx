@@ -68,6 +68,10 @@ export default function MainMenu() {
           Canais de comunicação
         </MenuItem>
 
+        <MenuItem onClick={handleClose} component={Link}to="/tag">
+          Etiquetas
+        </MenuItem>
+
 
       </Menu>
     </div>

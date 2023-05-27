@@ -12,7 +12,8 @@ import CarrierList from './pages/carrier/CarrierList'
 import CarrierForm from './pages/carrier/CarrierForm'
 import ChannelList from './pages/channel/ChannelList'
 import ChannelForm from './pages/channel/ChannelForm'
-
+import TagList from './pages/tag/TagList'
+import TagForm from './pages/tag/TagForm'
 
 function AuthGuard({children}){
   //Estaremos autenticados se tivermos um token gravado no localStorage
@@ -45,6 +46,10 @@ function App() {
           <Route path="/channel" element={<AuthGuard> <ChannelList /> </AuthGuard> }  />
           <Route path="/channel/new" element={<AuthGuard> <ChannelForm /> </AuthGuard> }  />
           <Route path="/channel/:id" element={<AuthGuard> <ChannelForm /> </AuthGuard> }  />
+
+          <Route path="/tag" element={<AuthGuard> <TagList /> </AuthGuard> }  />
+          <Route path="/tag/new" element={<AuthGuard> <TagForm /> </AuthGuard> }  />
+          <Route path="/tag/:id" element={<AuthGuard> <TagForm /> </AuthGuard> }  />
 
 
         </Routes>
