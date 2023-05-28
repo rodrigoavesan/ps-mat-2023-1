@@ -171,7 +171,6 @@ export default function OrderStatusForm() {
             error={errors?.sequence}
             helperText={errors?.sequence}
           />
-          
           <TextField 
             label="Descrição" 
             variant="filled"

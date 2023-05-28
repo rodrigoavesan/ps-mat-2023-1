@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 export default function OrderStatusList() {
+  
   const API_PATH = '/order_statuses'
 
   const [state, setState] = React.useState({

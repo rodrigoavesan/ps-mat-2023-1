@@ -1,7 +1,6 @@
 import Joi from 'joi'
 
 const OrderStatus = Joi.object({
-
     sequence: Joi.number()
         .min(1)
         .max(30)
