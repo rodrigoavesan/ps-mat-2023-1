@@ -55,7 +55,6 @@ export default function MainMenu() {
           Métodos de pagamento
         </MenuItem>
 
-
         <MenuItem onClick={handleClose} component={Link}to="/carrier">
           Transportadoras
         </MenuItem>
@@ -76,6 +75,9 @@ export default function MainMenu() {
            Status do pedido 
         </MenuItem>
 
+        <MenuItem onClick={handleClose} component={Link}to="/user">
+          Usuários 
+        </MenuItem>
 
       </Menu>
     </div>
