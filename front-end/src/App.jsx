@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import HeaderBar from './components/ui/HeaderBar'
 import Box from '@mui/material/Box'
+import React from 'react'
 import PaymentMethodList from './pages/payment_methods/PaymentMethodList'
 import PaymentMethodForm from './pages/payment_methods/PaymentMethodForm'
 import ShipmentPriorityForm from './pages/shipment_priority/ShipmentPriorityForm'
@@ -27,13 +28,21 @@ function AuthGuard({children}){
 
 function App() {
 
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  function onLoginLogout(loggedIn){
+    setIsLoggedIn(loggedIn)
+  }
+
   return (
     <BrowserRouter>
-      <HeaderBar />
+      <HeaderBar isLoggedIn={isLoggedIn} onLoginLogout={onLoginLogout} />
       <Box sx={{ m: '25px auto', p:'16px' }}>
         <Routes>
+          
+          <Route path="/login" element={<Login onLoginLogout={onLoginLogout} />}/>
+
           <Route path="/" element={<AuthGuard> <Home /> </AuthGuard> } />
-          <Route path="/login" element={<Login />} />
 
           <Route path="/payment_method" element={<AuthGuard> <PaymentMethodList /> </AuthGuard> } />
           <Route path="/payment_method/new" element={<AuthGuard> <PaymentMethodForm /> </AuthGuard> } />
