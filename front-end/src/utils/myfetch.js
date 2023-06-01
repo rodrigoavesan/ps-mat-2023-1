@@ -1,6 +1,7 @@
 const myfetch = {}  // Objeto vazio
 
-const baseUrl = 'http://localhost:3000'
+//le o endereço do back-end a partir do arquivo .env.local
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 function defaultOptions(body = null, method = 'GET') {
   const options = {

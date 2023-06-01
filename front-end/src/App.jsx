@@ -20,17 +20,17 @@ import OrderStatusForm from './pages/order_status/OrderStatusForm'
 import UserList from './pages/user/UserList'
 import UserForm from './pages/user/UserForm'
 
-function AuthGuard({children}){
-  //Estaremos autenticados se tivermos um token gravado no localStorage
-  if(window.localStorage.getItem('token')) return children
-  else return <Navigate to="/login" repalce/>
-}
-
-function App() {
+function App(){
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
-  function onLoginLogout(loggedIn){
+  function AuthGuard({children}) {
+    // Estaremos autenticados se tivermos um token gravado no localStorage
+    if(isLoggedIn) return children
+    else return <Navigate to="/login" replace />
+  }
+
+  function onLoginLogout(loggedIn) {
     setIsLoggedIn(loggedIn)
   }
 
