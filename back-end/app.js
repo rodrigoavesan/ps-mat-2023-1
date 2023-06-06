@@ -2,10 +2,12 @@
 // .env para a aplicação
 require('dotenv').config()
 
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 
 var app = express();
 
@@ -13,6 +15,7 @@ var app = express();
 // na variável process.env.FRONT_ORIGIN possa
 // acessar o back-end
 const cors = require('cors')
+
 app.use(cors({
   origin: process.env.FRONT_ORIGIN,
   credentials: true // Exige o envio de cookie com credenciais
