@@ -56,4 +56,5 @@ myfetch.delete = async function(path) {
   else throw new Error(getErrorDescription(response))
 }
 
+
 export default myfetch
