@@ -8,8 +8,8 @@ const controller = {} //Objeto Vazio
 /*
     Métodos CRUD do controller 
     Create: cria um novo registros
-    retrive: lista(recupera) todos os registros
-    retriveOne: lista(recupera) apenas um registro
+    retrieve : lista(recupera) todos os registros
+    retrieve One: lista(recupera) apenas um registro
     update: atualiza um registro
     delete: deleta um registro
 */
@@ -28,7 +28,7 @@ controller.create = async (req, res) => {
     }
 }
 
-controller.retrive = async (req, res) => {
+controller.retrieve  = async (req, res) => {
     try{
         const data = await User.findAll()
         // HTTP 200: OK (implicito)
@@ -39,7 +39,7 @@ controller.retrive = async (req, res) => {
     }
 }
 
-controller.retriveOne = async (req, res) => {
+controller.retrieveOne = async (req, res) => {
     try{
         const data = await User.findByPk(req.params.id)
 
