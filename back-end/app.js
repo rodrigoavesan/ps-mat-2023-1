@@ -55,6 +55,7 @@ app.use('/payment_methods', paymentMethods)
 const carriers = require('./routes/carriers')
 app.use('/carriers', carriers)
 
+
 const shipmentPriorities = require('./routes/shipment_priorities')
 app.use('/shipment_priorities', shipmentPriorities)
 
