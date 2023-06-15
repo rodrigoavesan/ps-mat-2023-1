@@ -1,8 +1,7 @@
 const myfetch = {}  // Objeto vazio
 
-//le o endereço do back-end a partir do arquivo .env.local
+// Lê o endereço do back-end a partir do arquivo .env.local
 const baseUrl = import.meta.env.VITE_BACKEND_URI
-
 
 function defaultOptions(body = null, method = 'GET') {
   const options = {
@@ -22,7 +21,6 @@ function defaultOptions(body = null, method = 'GET') {
   return options
 }
 
-
 function getErrorDescription(response) {
   switch(response.status) {
     case 401:   // Unauthorized
@@ -33,7 +31,6 @@ function getErrorDescription(response) {
 
   }
 }
-
 
 myfetch.post = async function(path, body) {
   const response = await fetch(baseUrl + path, defaultOptions(body, 'POST'))
@@ -47,13 +44,11 @@ myfetch.put = async function(path, body) {
   else throw new Error(getErrorDescription(response))
 }
 
-
 myfetch.get = async function(path) {
   const response = await fetch(baseUrl + path, defaultOptions())
   if(response.ok) return response.json()
   else throw new Error(getErrorDescription(response))
 }
-
 
 myfetch.delete = async function(path) {
   const response = await fetch(baseUrl + path, defaultOptions(null, 'DELETE'))

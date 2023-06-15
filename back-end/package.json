@@ -12,11 +12,8 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "http-errors": "~1.6.3",
-    "jade": "^0.29.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
-    "mysql2": "^3.3.3",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0"
